@@ -17,7 +17,12 @@
       };
       ## This section is used to develop openzfs-docs,
       ## Not related to system configuration.
-      devShells.x86_64-linux.default = let
+      devShells.x86_64-linux.guide-tests = pkgs.mkShell {
+        nativeBuildInputs = builtins.attrValues {
+          inherit (pkgs) qemu_kvm;
+        };
+      };
+      devShells.x86_64-linux.docs = let
         pkgs = nixpkgs.legacyPackages.x86_64-linux;
         sphinx-issues = let
           pname = "sphinx-issues";

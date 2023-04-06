@@ -1,8 +1,6 @@
 { inputs, pkgs, lib, ... }:
-let
-  installerScript = pkgs.writeText "init.sh" (builtins.readFile ./init.sh);
-in
-{
+let installerScript = pkgs.writeText "init.sh" (builtins.readFile ./init.sh);
+in {
 
   # Let 'nixos-version --json' know about the Git revision
   # of this flake.
@@ -50,9 +48,7 @@ in
     cp ${installerScript} /root/init.sh
     chmod a+x /root/init.sh
   '';
-  boot.kernelParams = [
-    "console=ttyS0,115200n8"
-  ];
+  boot.kernelParams = [ "console=ttyS0,115200n8" ];
 
   systemd.services."serial-getty@ttyS0" = {
     enable = true;
