@@ -4,7 +4,7 @@
   outputs = { self, nixpkgs }@inputs:
     let lib = nixpkgs.lib;
     in {
-      # nix build .#nixosConfigurations.exampleHost.config.system.build.isoImage
+      # time nix build .#nixosConfigurations.exampleHost.config.system.build.isoImage
       nixosConfigurations = {
         exampleHost = let
           system = "x86_64-linux";
