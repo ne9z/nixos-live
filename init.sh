@@ -14,7 +14,7 @@ sed 's|.. ifconfig:: zfs_root_test|::|g' \
 
 nix develop ./nixos-live#build-script --command bash <<EOF
 python \
-    ./nixos-live/my_pylit.py \
+    ./nixos-live/zfs_root_gen_bash.py \
     "nixos.rst" \
     "nixos.sh"
 EOF
