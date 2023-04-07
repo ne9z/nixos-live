@@ -1,0 +1,7 @@
+* Automated test for NixOS Root on ZFS guide
+
+** Test with chroot
+Use =chroot_init.sh= file.
+
+** Test with QEMU + KVM virtualization
+Use =run_test.sh= file

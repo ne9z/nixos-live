@@ -1,8 +1,9 @@
 #!/usr/bin/env bash
 # wait for networking to complete initialization
-sleep 20
 
-nix-env -f '<nixpkgs>' -iA git
+if [ $(tty) == "/dev/ttyS0" ]; then
+
+sleep 16
 
 git clone --branch dev https://github.com/ne9z/nixos-live
 git clone --depth 1 --branch dev https://github.com/ne9z/openzfs-docs
@@ -17,5 +18,9 @@ python \
     "nixos.sh"
 EOF
 
+# check whether nixos.sh have syntax errors
+bash -n nixos.sh
+
 chmod a+x nixos.sh
 ./nixos.sh
+fi
