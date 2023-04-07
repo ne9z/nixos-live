@@ -53,6 +53,20 @@
             inherit (pkgs.python3Packages) sphinx flit-core;
           };
         };
+        python = pkgs.python3.withPackages (ps:
+          builtins.attrValues {
+            inherit (ps.pkgs.python3Packages)
+              sphinx sphinx-rtd-theme setuptools;
+            inherit sphinx-issues sphinx-notfound-page;
+          });
+      in pkgs.mkShell {
+        nativeBuildInputs = builtins.attrValues {
+          inherit (pkgs) gnumake;
+          inherit python;
+        };
+      };
+      devShells.x86_64-linux.build-script = let
+        pkgs = nixpkgs.legacyPackages.x86_64-linux;
         pylit = let
           pname = "pylit";
           version = "0.8.0";
@@ -67,17 +81,10 @@
           propagatedBuildInputs =
             builtins.attrValues { inherit (pkgs.python3Packages) flit-core; };
         };
-        python = pkgs.python3.withPackages (ps:
-          builtins.attrValues {
-            inherit (ps.pkgs.python3Packages)
-              sphinx sphinx-rtd-theme setuptools;
-            inherit sphinx-issues sphinx-notfound-page pylit;
-          });
+        python = pkgs.python3.withPackages
+          (ps: builtins.attrValues { inherit pylit; });
       in pkgs.mkShell {
-        nativeBuildInputs = builtins.attrValues {
-          inherit (pkgs) gnumake;
-          inherit python;
-        };
+        nativeBuildInputs = builtins.attrValues { inherit python; };
       };
     };
 }
