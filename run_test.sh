@@ -1,4 +1,15 @@
 #!/usr/bin/env bash
+
+if [ "$1" == "reboot" ]; then
+      time qemu-system-x86_64 \
+ -enable-kvm \
+ -drive format=raw,file=disk1.img \
+ -drive format=raw,file=disk2.img \
+ -m 1G \
+ -object rng-random,id=id,filename=/dev/random
+fi
+
+if [ "$1" == "rm" ]; then
 time nix build .#nixosConfigurations.exampleHost.config.system.build.isoImage
 
 rm -f disk1.img disk2.img
@@ -16,3 +27,4 @@ rm -f disk1.img disk2.img
  -serial stdio \
  -m 1G \
  -object rng-random,id=id,filename=/dev/random
+ fi
