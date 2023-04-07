@@ -6,7 +6,7 @@ nix-env -f '<nixpkgs>' -iA git
 
 git clone https://github.com/ne9z/nixos-live
 git -C ./nixos-live checkout dev
-git clone https://github.com/ne9z/openzfs-docs
+git clone --depth 1 https://github.com/ne9z/openzfs-docs
 git -C ./openzfs-docs checkout dev
 
 sed 's|.. ifconfig:: zfs_root_test|::|g' \
