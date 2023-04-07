@@ -13,7 +13,7 @@ sed 's|.. ifconfig:: zfs_root_test|::|g' \
     'openzfs-docs/docs/Getting Started/NixOS/Root on ZFS.rst' > nixos.rst
 nix develop ./nixos-live#build-script --command bash <<EOF
 python \
-    my_pylit.py \
+    ./nixos-live/my_pylit.py \
     "nixos.rst" \
     "nixos.sh"
 EOF
