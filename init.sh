@@ -1,8 +1,6 @@
 #!/usr/bin/env bash
 # wait for networking to complete initialization
 sleep 20
-mkdir -p ~/.config/nix
-echo "experimental-features = nix-command flakes" >> ~/.config/nix/nix.conf
 
 nix-env -f '<nixpkgs>' -iA git
 
@@ -10,12 +8,16 @@ git clone https://github.com/ne9z/nixos-live
 cd nixos-live
 git checkout dev
 git clone https://github.com/ne9z/openzfs-docs
-git -C ./openzfs-docs checkout dev
+git -C ./openzfs-docs checkout main
+
+sed 's|.. ifconfig:: zfs_root_test|::|g' \
+    'openzfs-docs/docs/Getting Started/NixOS/Root on ZFS.rst' > nixos.rst
 nix develop --command bash <<EOF
-cd openzfs-docs
-make zfs_root_test
+python \
+    my_pylit.py \
+    "nixos.rst" \
+    "nixos.sh"
 EOF
 
-cp 'openzfs-docs/docs/_build/tests/Root on ZFS/nixos.sh' /root/install.sh
-chmod a+x /root/install.sh
-/root/install.sh
+chmod a+x nixos.sh
+./nixos.sh
