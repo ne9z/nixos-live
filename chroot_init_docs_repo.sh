@@ -35,7 +35,7 @@ sed 's|.. ifconfig:: zfs_root_test|::|g' \
     'docs/Getting Started/NixOS/Root on ZFS.rst' > nixos.rst
 
 # Extract installation shell script from openzfs documentation
-nix develop ./#build-script --command bash <<EOF
+nix develop ./nixos-live#build-script --command bash <<EOF
 python \
     ./nixos-live/my_pylit.py \
     "nixos.rst" \
