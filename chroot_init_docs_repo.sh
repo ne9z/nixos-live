@@ -1,4 +1,9 @@
 #!/usr/bin/env bash
+# assume current directory structure
+# ./openzfs-docs/ <- you are here
+# ./openzfs-docs/...
+# ./openzfs-docs/nixos-live/...
+
 set -xuef
 
 # Install ZFS
@@ -21,7 +26,8 @@ apt install --yes git jq parted
 apt install --yes whois
 
 # Clone openzfs-docs repo
-git clone --depth 1 --branch main https://github.com/ne9z/nixos-live
+# already cloned in Github Action definition
+#git clone --depth 1 --branch main https://github.com/ne9z/nixos-live
 git -C nixos-live log -n1
 
 # Preprocess document for pylit
