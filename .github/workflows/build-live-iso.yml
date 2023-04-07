@@ -1,8 +1,8 @@
-name: "NixOS_Live"
+name: "Test NixOS root on zfs guide"
 on:
   push:
     branches:
-      - dev
+      - main
   workflow_dispatch:
 jobs:
   build:
