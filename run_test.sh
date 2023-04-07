@@ -1,4 +1,6 @@
 #!/usr/bin/env bash
+time nix build .#nixosConfigurations.exampleHost.config.system.build.isoImage
+
 rm -f disk1.img disk2.img
 
  qemu-img create -f raw disk1.img 16G
