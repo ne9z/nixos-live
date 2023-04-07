@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+set -fxue
+
 if [ "$1" == "reboot" ]; then
       time qemu-system-x86_64 \
  -enable-kvm \
