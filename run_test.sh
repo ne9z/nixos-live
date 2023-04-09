@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-set -fxue
+set -fxuev
 
 if [ "$1" = "reboot" ]; then
       qemu-system-x86_64 \
