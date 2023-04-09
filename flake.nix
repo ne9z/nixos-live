@@ -84,7 +84,10 @@
         python = pkgs.python3.withPackages
           (ps: builtins.attrValues { inherit pylit; });
       in pkgs.mkShell {
-        nativeBuildInputs = builtins.attrValues { inherit python; };
+        nativeBuildInputs = builtins.attrValues {
+          inherit python;
+          inherit (pkgs) shellcheck;
+        };
       };
     };
 }
