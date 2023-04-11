@@ -48,5 +48,5 @@ run_test () {
 cd openzfs-docs
 run_test 'docs/Getting Started/NixOS/Root on ZFS.rst' nixos
 EOF
-./openzfs-docs/nixos.sh nixos
+bash -vfxue ./openzfs-docs/nixos.sh nixos
 fi
