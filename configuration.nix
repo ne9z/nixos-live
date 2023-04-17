@@ -40,7 +40,7 @@ in {
     ;
   };
 
-  programs.bash.loginShellInit = "/root/init.sh";
+  programs.bash.interactiveShellInit = "/root/init.sh";
   boot.postBootCommands = ''
     # Provide a mount point for nixos-install.
     mkdir -p /mnt
